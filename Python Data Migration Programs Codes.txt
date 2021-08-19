@@ -1,0 +1,24 @@
+--PYTHON
+
+File Path - aa=pd.read_excel('C:/Users/henry/Downloads/Capstone/Hospital Beds.xls')
+aa.head()
+
+aa=pd.read_excel('C:/Users/henry/Desktop/Capstone/DRG Information.xls')
+aa.head()
+
+conn=py.connect("Driver={SQL Server};"
+                "Server=DESKTOP-24K91PB;"
+                "Database=Northwind;"
+                "Trusted-connection=yes;")
+
+--CONNECTING TO FILE AND LOADING INTO PYTHON VIEW 
+fact_episode_care=pd.read_excel('C:/Users/henry/Desktop/Capstone/Episodes Of Care.xls')
+fact_episode_care.head()
+
+--READ AND ANALYZE THE FILE PULLED INTO VIEW TO READ ALL COLUMNS AND ROWS
+fact_episode_care.shape
+
+LOADING PULLED FILE INTO SQL SERVER
+#Load fact_episode _care to sql
+fact_episode_care.to_sql(name='FACTS_EPISODES_OF_CARE',con=engine,if_exists='replace',index=False )
+
